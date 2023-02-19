@@ -14,5 +14,6 @@ jobs:
       with:
         aws-region: eu-west-1
         role-to-assume: arn:aws:iam::854268402788:role/github
+        role-session-name: github
     - run: aws sts get-caller-identity
 
