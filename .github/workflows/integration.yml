@@ -1,0 +1,18 @@
+name: Integration
+
+on: [push]
+jobs:
+  integration:
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3.3.0
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: eu-west-1
+        role-to-assume: arn:aws:iam::854268402788:role/github
+    - run: aws sts get-caller-identity
+
