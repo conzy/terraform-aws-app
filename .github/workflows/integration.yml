@@ -1,6 +1,6 @@
 name: Integration
 
-on: [push]
+on: [pull_request]
 jobs:
   integration:
     permissions:
@@ -16,4 +16,3 @@ jobs:
         role-to-assume: arn:aws:iam::854268402788:role/github
         role-session-name: github
     - run: aws sts get-caller-identity
-
