@@ -1,6 +1,6 @@
 name: Integration
 
-on: [pull_request]
+on: [ pull_request ]
 jobs:
   integration:
     permissions:
@@ -8,11 +8,28 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.3.0
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-region: eu-west-1
-        role-to-assume: arn:aws:iam::854268402788:role/github
-        role-session-name: github
-    - run: aws sts get-caller-identity
+      - uses: actions/checkout@v3.3.0
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: eu-west-1
+          role-to-assume: arn:aws:iam::854268402788:role/github
+          role-session-name: github
+      - run: aws sts get-caller-identity
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install Python Dependencies
+        run: |
+          python3 -m venv virtualenv
+          . ./virtualenv/bin/activate
+          python3 -m pip install -r requirements-dev.txt
+        shell: bash
+      - name: Run unit tests
+        run: |
+          . ./virtualenv/bin/activate
+          pytest
+        shell: bash
+        env:
+          AWS_DEFAULT_REGION: eu-west-1
