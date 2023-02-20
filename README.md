@@ -4,3 +4,4 @@ A module that encapsulates an app or service. With integration tests against a r
 auth
 
 Work in Progress...
+
