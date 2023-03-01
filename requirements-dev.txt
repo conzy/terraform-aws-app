@@ -1,0 +1,4 @@
+pytest
+tftest
+black
+boto3

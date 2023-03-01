@@ -1,5 +1,7 @@
-# Outputs are defined here.
+output "lambda_name" {
+  value = module.lambda.function_name
+}
 
-#output "the_output" {
-#  value = aws_iam_role.this.name
-#}
+output "lambda_arn" {
+  value = module.lambda.lambda_arn
+}
