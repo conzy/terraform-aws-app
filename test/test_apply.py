@@ -27,7 +27,10 @@ class TestLambdaIntegration:
     def test_lambda_function_has_correct_env_vars(self, output):
         """Checks that deployed Lambda has the correct env var"""
         function_arn = output["function_arn"]
-        assert self.get_lambda_config(function_arn)["Configuration"]["Environment"]["Variables"] == {"FOO": "bar"}
+        assert self.get_lambda_config(function_arn)["Configuration"]["Environment"]["Variables"] == {
+            "FOO": "bar",
+            "HELLO": "world",
+        }
 
     def test_lambda_function_invocation(self, output):
         """Invokes the deployed Lambda and ensures it returns the expected response"""
