@@ -31,6 +31,6 @@ module "lambda" {
   lambda_role = aws_iam_role.app_role.arn
   tags        = {}
   environment_variables = {
-    FOO = "bar"
+    FOO = "wrong_value"
   }
 }
